@@ -25,6 +25,18 @@ const Home = () => {
 
     setIsGenerating(true);
     
+    if (retry > 0) {
+      setRetryCount((prevState) => {
+        if (prevState === 0) {
+          return 0;
+        } else {
+          return prevState - 1;
+        }
+      });
+  
+      setRetry(0);
+    }
+    
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: {
